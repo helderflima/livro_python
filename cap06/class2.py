@@ -28,8 +28,8 @@ class DataTable:
         self._references = []
         self._referenced = []
 
-    def add_column(self, name, kind, description=""):
-        column = Column(name, kind, description=description)
+    def add_column(self, name, kind, description):
+        column = Column(name, kind, description)
         self._columns.append(column)
         return column
 
@@ -70,7 +70,7 @@ class Column:
             description: Descrição da coluna
     """
 
-    def __init__(self, name, kind, description=""):
+    def __init__(self, name, kind, description):
         """ Construtor
 
             Args:
@@ -81,13 +81,6 @@ class Column:
         self._name = name
         self._kind = kind
         self._description = description
-        self._is_pk = False
-
-    def __str__(self):
-        _str = "Col: {} : {} {}".format(self._name,
-                                        self._kind,
-                                        self._description)
-        return _str
 
 
 class Relationship:
@@ -104,30 +97,9 @@ class Relationship:
             on: Instância de coluna onde existe
     """
     def __init__(self, name, _from, to, on):
-        """ Construtor
-
-            Args:
-                name: Nome
-                from: Tabela de onde sai
-                to: Tabela pra onde vai
-                on: instância de coluna onde existe
-        """
         self._name = name
         self._from = _from
         self._to = to
-        self._on = on
-
-
-class PrimaryKey(Column):
-    def __init__(self, table, name, kind, description=""):
-        super().__init__(name, kind, description=description)
-        self._is_pk = True
-
-    def __str__(self):
-        _str = "Col: {} : {} {}".format(self._name,
-                                        self._kind,
-                                        self._description)
-
-        return "{} - {}".format('PK', _str)
+        self._on - on
 
 
